@@ -1,3 +1,4 @@
-# web518   
-This repo is for web programming course cs518   
-This project is done by Saketh and Hariharan   
+Hariharan Thiyagarajan<br>
+Fall 2018<br>
+CS 518 - Webprogramming<br>
+Team members - Hariharan and Saketh
