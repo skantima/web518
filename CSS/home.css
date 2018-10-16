@@ -1,0 +1,92 @@
+.vl{
+
+margin-top:2px;
+
+
+}
+
+body{
+
+
+	background-color: #EAFBCB
+}
+
+
+.div1{
+	  float: left;
+      padding-left: 25%;
+      margin-bottom: 2px;
+}
+
+
+
+.navbar{
+    
+    margin-top: 10px;
+	width:100%;
+}
+.posts{
+
+   font-weight: bold;
+   margin-left: 100px;
+
+
+
+}
+
+
+ #content{
+
+    
+	width: 290px;
+	margin-left:10px;
+	margin-top: -15px;
+}
+
+#usertimeline{
+/*#f8f9fa!important*/
+	background:#f8f9fa!important;
+	width:250px;
+	float:left;
+	height:100%;
+	border:1px solid black;
+	position: fixed;
+	margin-top: 65px;
+}
+
+
+
+#groupdetails{
+
+
+	 	text-align:center;
+}
+
+#darea{
+
+   
+	float: left;
+	margin-top: 4px;
+	margin-left:300px;
+	
+}
+
+#index{
+
+font-size: 24px;
+margin-left: 20px;
+margin-top: 250px;
+}
+
+
+#dis{
+
+	    margin-left: 11px;
+	    border-bottom:1px solid #F0F9E1;
+
+}
+#tstamp{
+
+	font-size: 12px;
+	 color:#A9AAA6;
+}
