@@ -1,0 +1,27 @@
+.signup{
+
+   border:1px solid teal;
+    margin-left: 450px;
+    margin-top: 150px;
+    margin-right: 500px;
+    margin-bottom: 300px;
+    font-weight: bold;
+    border-radius: 20px;
+    position: fixed;
+
+}
+
+.alignsignup{
+
+
+	margin-left: 75px;
+	margin-right: 75px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.main{
+     
+     margin-left: 45px;
+
+}

@@ -5,11 +5,7 @@ margin-top:2px;
 
 }
 
-body{
 
-
-	background-color: #EAFBCB
-}
 
 
 .div1{
@@ -28,10 +24,14 @@ body{
 .posts{
 
    font-weight: bold;
-   margin-left: 100px;
+   margin-left: 10px;
 
 
 
+}
+
+.modal{
+	margin-top:250px;
 }
 
 
@@ -45,13 +45,14 @@ body{
 
 #usertimeline{
 /*#f8f9fa!important*/
-	background:#f8f9fa!important;
+	background:#155e63;
 	width:250px;
 	float:left;
 	height:100%;
 	border:1px solid black;
 	position: fixed;
-	margin-top: 65px;
+	margin-top: 67px;
+	margin-left:-10px;
 }
 
 
@@ -80,9 +81,10 @@ margin-top: 250px;
 
 
 #dis{
-
+        /*#F0F9E1*/
 	    margin-left: 11px;
-	    border-bottom:1px solid #F0F9E1;
+	    border:1px solid teal ;
+	    background-color: white;
 
 }
 #tstamp{

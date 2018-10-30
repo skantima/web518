@@ -34,6 +34,7 @@ Email:<br>
 <p> 
 <br>
  <input type="submit" class="btn btn-success " style="color:black; font-weight:bold;"  name="submit" value="Login" />
+ <a href="signup.php" class="btn btn-primary" style="color:black; font-weight:bold;">Signup</a>
  </p>
 </div>
 
@@ -45,6 +46,7 @@ Email:<br>
   error_reporting(E_ALL); 
   session_start();
   require_once('./mysqli_connect.php');
+
 
 
 if(isset($_POST['submit'])){
@@ -99,8 +101,12 @@ if(isset($_POST['submit'])){
         
         
         if($affected_rows == 1){
-           
+           $rowg= mysqli_fetch_array($result);
+           $user_id = $rowg['user_id'];
+           $mail_id = $rowg['email_id'];
            $_SESSION['email_id']=$mail_id;
+           $_SESSION['user_id']=$user_id;
+
       
 
             echo "<div class='main'><br><br><br><br> Login success <br /></div>";
@@ -114,7 +120,7 @@ if(isset($_POST['submit'])){
             
             echo "<div class='main'><br><br><br><br>Incorrect info <br /></div>";
             
-            header("refresh:2; url=login.php");
+            header("refresh:2; url=index.php");
            // echo mysqli_error();
 
             

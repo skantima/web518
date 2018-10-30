@@ -1,0 +1,46 @@
+.profilepage{
+     
+    
+    border:1px solid teal;
+    margin-left: 300px;
+    margin-top: 100px;
+    margin-right: 200px;
+    margin-bottom: 300px;
+    
+    border-radius: 20px;
+    position: fixed;
+    font-family: Verdana;
+	
+}
+
+.align{
+    
+margin-left: 50px;
+margin-right: 250px;
+margin-top: 50px;
+margin-bottom: 250px;
+}
+
+#aligns{
+
+    margin-left: 50px;
+    margin-top: 50px;
+
+    float: left;
+    
+    
+    
+}
+
+label{
+
+
+    font-weight: bold;
+}
+
+#imgg{
+   margin-left: 150px;
+    margin-top: 50px;
+
+   
+} 
