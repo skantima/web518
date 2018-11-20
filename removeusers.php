@@ -21,68 +21,62 @@
     $user_id = $_SESSION['user_id'];
     
    
-     $join="";
-     $join=$join."<div class='formdiv'>";
-     $join=$join."<a id='icon' href=home.php <i class='fas fa-chevron-left' ></i></a>";
-     $join=$join."<div class='align'>";
-     $join=$join."<form method ='POST' id='join-form'>";
+     $remove="";
+     $remove=$remove."<div class='formdiv'>";
+     $remove=$remove."<a id='icon' href=home.php <i class='fas fa-chevron-left' ></i></a>";
+     $remove=$remove."<div class='align'>";
+     $remove=$remove."<form method ='POST' id='remove-form'>";
      
-     $join=$join."<H4 style='text-align: center;'> Join / Invite to Groups </H4><br><br>";
-     $join=$join."Select Group:";
-     if($user_id != '20') {
+     $remove=$remove."<H4 style='text-align: center;'> Remove users from group </H4><br><br>";
+     $remove=$remove."Select Group:";
+     
+     $sql = "SELECT group_name,privacy FROM groups";
 
-        // $sql = "SELECT group_name,privacy FROM groups WHERE privacy='public' and group_name!='Global' or owner_id='$user_id'";
-
-        $sql = "SELECT groups.group_name,groups.privacy FROM groups JOIN archive_info  WHERE  groups.group_name!='Global' and archive_info.group_id = groups.group_id and archive_info.archive_action ='unarchive' and groups.owner_id = '$user_id'";
-     }
-     else{
-              $sql = "SELECT group_name,privacy FROM groups";
-
-     }
+     
      
      $run = mysqli_query($dbc,$sql);
-      $join=$join."<select id='myselect'>";
+      $remove=$remove."<select id='myselect'>";
      while( $result= mysqli_fetch_array($run)){
 
           $group_name=$result['group_name'];
           $pri=$result['privacy'];
          
- $join=$join."<option name='group' id='$group_name' value='$group_name'>$group_name    ($pri)</font></option><br>";
+ $remove=$remove."<option name='group' id='$group_name' value='$group_name'>$group_name    ($pri)</font></option><br>";
         
     }
-     $join=$join."</select>";
-     $join=$join."<br>";
-     $join=$join."<br>Users list:";
+     $remove=$remove."</select>";
+     $remove=$remove."<br>";
+     $remove=$remove."<br>Users list:";
 
-        $join=$join."<div class='multiselect'>"; 
-        $join=$join."<div class='selectBox' onclick='showCheckboxes()'>"; 
-        $join=$join."<select><option>Select users list</option>"; 
-        $join=$join."</select>"; 
-        $join=$join."<div class='overSelect'></div>"; 
-        $join=$join."</div>"; 
-        $join=$join."<div id='checkboxes'>"; 
+        $remove=$remove."<div class='multiselect'>"; 
+        $remove=$remove."<div class='selectBox' onclick='showCheckboxes()'>"; 
+        $remove=$remove."<select><option>Select users list</option>"; 
+        $remove=$remove."</select>"; 
+        $remove=$remove."<div class='overSelect'></div>"; 
+        $remove=$remove."</div>"; 
+        $remove=$remove."<div id='checkboxes'>"; 
       
-         $sqlist = "SELECT user_name,user_id from users";
+         $sqlist = "SELECT user_name,user_id from users where user_id != 20";
         $runlist= mysqli_query($dbc,$sqlist);
         while($resultlist = mysqli_fetch_array($runlist)){
             $userlist_name= $resultlist['user_name'];
             $userlist_id = $resultlist['user_id'];
-            $join=$join."<label>";
-            $join=$join."<input type='checkbox' name='ulist[]'  value='".$userlist_id."'/>$userlist_name</label>";
+            $remove=$remove."<label>";
+            $remove=$remove."<input type='checkbox' name='ulist[]'  value='".$userlist_id."'/>$userlist_name</label>";
            
 
         }
-     $join=$join."</div>";
-     $join=$join."</div>";
+     $remove=$remove."</div>";
+     $remove=$remove."</div>";
 
 
 
 
-     $join=$join."<input type='submit' name='join' value='invite' class='btn btn-success invite-users' style='float:right;margin-right: -59px;'/>";
-     $join=$join."</form>";
-     $join=$join."</div>";
-     $join=$join."</div>";
-     echo $join;
+     $remove=$remove."<input type='submit' name='join' value='remove' class='btn btn-danger remove-users' style='float:right;margin-right: -59px;'/>";
+     $remove=$remove."</form>";
+     $remove=$remove."</div>";
+     $remove=$remove."</div>";
+     echo $remove;
 ?>
 <script >
   var expanded = false;

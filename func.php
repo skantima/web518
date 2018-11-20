@@ -246,6 +246,7 @@ $user_id= $rowu['user_id'];
   }
 }
 
+
 // Check if user already dislikes post or not
 function userDisliked($post_id)
 {
@@ -281,5 +282,22 @@ if(!session_start())
         return false;
   }
 }
+
+
+//check if archived
+
+function archive($group_id)
+{
+  global $dbc;
+  $sql = "SELECT * FROM archive_info WHERE group_id=$group_id AND archive_action='archive'";
+  $result = mysqli_query($dbc,$sql);
+   if (mysqli_num_rows($result) > 0) {
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 
 ?>

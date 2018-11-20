@@ -4,7 +4,7 @@
 require_once("./mysqli_connect.php");
 include ("./func.php");
 global $dbc;
-// if user clicks like or dislike button
+// if user clicks like , dislike or archive  button
 session_start();
 if(!isset($_SESSION['email_id']))
   header("Location:login.php");
@@ -16,6 +16,7 @@ $user_id= $rowu['user_id'];
 
 if (isset($_POST['action'])) {
   $post_id = $_POST['post_id'];
+  // $group_id = $_POST['group_id'];
   $action = $_POST['action'];
   switch ($action) {
   	case 'like':
@@ -42,6 +43,18 @@ if (isset($_POST['action'])) {
       	  mysqli_query($dbc, $sql);
          	    echo getRating($post_id);
       break;
+
+    case 'archive':
+         $sql="update archive_info set archive_action='archive' WHERE group_id = $group_id";
+              mysqli_query($dbc, $sql);
+              echo "success";
+        break;
+
+    case 'unarchive':
+         $sql="update archive_info set archive_action='unarchive' WHERE group_id = $group_id";
+         mysqli_query($dbc, $sql);
+        break;
+
   	default:
   		break;
   }
@@ -52,6 +65,32 @@ if (isset($_POST['action'])) {
   exit(0);
 }
 
+if (isset($_GET['action'])) {
+  // $post_id = $_POST['post_id'];
+  $group_id = $_GET['group_id'];
+  $action = $_GET['action'];
+  switch ($action) {
+    
 
+    case 'archive':
+         $sql="update archive_info set archive_action='archive' WHERE group_id = $group_id";
+              mysqli_query($dbc, $sql);
+              echo "success";
+        break;
+
+    case 'unarchive':
+         $sql="update archive_info set archive_action='unarchive' WHERE group_id = $group_id";
+         mysqli_query($dbc, $sql);
+        break;
+
+    default:
+      break;
+  }
+
+  // // execute query to effect changes in the database ...
+  // mysqli_query($dbc, $sql);
+  // echo getRating($post_id);
+  exit(0);
+}
 
 ?>

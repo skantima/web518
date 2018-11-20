@@ -169,6 +169,18 @@
                 $insert = "insert into user_groups(user_id,group_id) values('$user_id','$group_id')";
                 $run = mysqli_query($dbc,$insert);
 
+   if($user_id != '20')
+   {
+
+                $insertadmin = "insert into user_groups(user_id,group_id) values('20','$group_id')";
+                $runadmin = mysqli_query($dbc,$insertadmin);
+   }
+    
+          $insertarchive = "insert into archive_info(group_id,archive_action) values('$group_id','unarchive')";
+          $runarchive = mysqli_query($dbc,$insertarchive);
+       
+        
+
                 }
             
       
