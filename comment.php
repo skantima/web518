@@ -48,7 +48,15 @@ ini_set('display_errors', 1);
                        }
 
               $output .="<div style='float:left; width:25%' >";
-              $output .="<img width='20' height='20' src ='img/".$dp."' alt= 'dcdp'></img>";
+               if($res_comments['img_num']!= '1'){
+               $output .= "<img width='20' height='20' src ='img/".$dp."' alt= 'ddp'>";
+                }
+
+             else{
+
+              $output .="<img width='20' height='20' src ='".$dp."' alt= 'ddp'>";
+              }
+              
               $output .="</div><br>";
               $output .="<div id='readcomments'>";
               $output .="<p><font color='blue'>". $res_comments['user_name']."</font> says:&nbsp;&nbsp;";
@@ -303,10 +311,11 @@ if(isset($_GET['getnames'])){
 
 
 if(isset($_POST['admin'])){ 
-  
+
+
     $user_id = $_SESSION['user_id'];
     
-
+ 
       echo $user_id;
 
      

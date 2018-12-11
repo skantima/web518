@@ -30,7 +30,12 @@ $(document).ready(function(){
     
       str+= "<div id='dis"+e['post_id']+"' class='dis'>";
       str+= "<div>";
-      str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      if(e['img_num'] != 1){
+         str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      }
+     else{
+       str+= "<img width='40' height='40' src ='"+$dp+"' alt= 'ddp'>";
+     }
       str+= "</div><br>";
       str+= "<div id= 'posts' style='float:left;' >";
       str+= "<H6><a href='userprofile.php?'>"+ e['user_name']+"</a></H6>";
@@ -193,7 +198,7 @@ $(document).on('click', '.upload_image', function(e){
   var property= document.getElementById("file").files[0];
   var image_name =property.name;
   var image_extension = image_name.split(".").pop().toLowerCase();
-  if(jQuery.inArray(image_extension,['gif','png','jpg','jpeg']) == -1)
+  if(jQuery.inArray(image_extension,['gif','png','jpg','jpeg','pdf','docx','xls','txt']) == -1)
   {
     alert("Invalid image File");
   }
@@ -240,13 +245,28 @@ $(document).on('click', '.upload_image', function(e){
     
       str+= "<div id='dis"+e['post_id']+"' class='dis'>";
       str+= "<div>";
-      str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      if(e['img_num'] != 1){
+         str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      }
+     else{
+       str+= "<img width='40' height='40' src ='"+$dp+"' alt= 'ddp'>";
+     }
       str+= "</div><br>";
       str+= "<div id= 'posts' style='float:left;' >";
       str+= "<H6><a href='userprofile.php?'>"+ e['user_name']+"</a></H6>";
       str+= "</div>";
       str+= "<p id='tstamp' style='margin-left:100px;'>"+e['post_timestamp']+"</p>";
-      str+= "<img src='upload/"+e['image_content']+"' height='150' width='225' class='img-thmbnail' /><br>";
+      if(e['image_content'] !='')
+      {
+        // str+= "<img src='upload/"+e['image_content']+"' height='150' width='225' class='img-thmbnail' /><br>";
+        str+= "<img width='100' height='100' src ='upload/"+e['image_content']+"' alt= 'ddp'><br>";
+  
+      }
+      else if (e['file_content'] !='') {
+        str+="<a href='upload/"+e['file_content']+"'>"+e['file_content']+"</a><br>";
+
+      }
+     
 
       var post_id= e['post_id'];
 
@@ -380,6 +400,7 @@ $(document).on('click', '.upload_image', function(e){
       
       $('#posts').prepend(str);
       $('textarea[name=content]').val('');
+     
 
 
 
@@ -430,7 +451,12 @@ $(document).on('click', '.upload_url', function(e){
     
       str+= "<div id='dis"+e['post_id']+"' class='dis'>";
       str+= "<div>";
-      str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      if(e['img_num'] != 1){
+         str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      }
+     else{
+       str+= "<img width='40' height='40' src ='"+$dp+"' alt= 'ddp'>";
+     }
       str+= "</div><br>";
       str+= "<div id= 'posts' style='float:left;' >";
       str+= "<H6><a href='userprofile.php?'>"+ e['user_name']+"</a></H6>";
@@ -583,6 +609,40 @@ $(document).on('click', '.upload_url', function(e){
      
     
 });
+
+
+//preview-Image
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+     
+         $('#blah').attr('src', e.target.result);
+         $('#blahs').attr('href', e.target.result);
+
+         
+     
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$(document).on('change', '#file', function(e){
+
+  readURL(this);
+   $('.blah').show();
+   $('.blahs').show();
+});
+
+$(document).on('click', '.dhide', function(e){
+
+  $('.blah').hide();
+  $('.blahs').hide();
+});
+
 
   
 	});

@@ -8,6 +8,7 @@
         crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body >
@@ -19,6 +20,7 @@
 
 </label>
 <form method="POST" >
+
 <!--   -->
  <div class="login">
 <div class="main">
@@ -32,6 +34,8 @@ Email:<br>
  Password:<br>
 <i class="fas fa-key" style="margin-right: 5px;"></i> <input type="password" name="password" size="30" value="" />
 <p> 
+<br>
+<div class="g-recaptcha" data-sitekey="6Ld6Q30UAAAAAGM7NEX7UULYA38U1atfuZR-_rTj"></div>
 <br>
  <input type="submit" class="btn btn-success " style="color:black; font-weight:bold;"  name="submit" value="Login" />
  <a href="signup.php" class="btn btn-primary" style="color:black; font-weight:bold;">Signup</a>
@@ -85,11 +89,23 @@ if(isset($_POST['submit'])){
  
     }
 
-    if(empty($data_missing)){
+
+    $secretkey = '6Ld6Q30UAAAAABzz6pGI4h9q8psw1EpO85Hu0C1Z';
+    $responsekey =  $_POST['g-recaptcha-response'];
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretkey&response=$responsekey";
+    $response = file_get_contents($url);
+    $validation = json_decode($response);
+ 
+
+
+    
+if($validation->success == 1){
+
+
+      if(empty($data_missing)){
         
         require_once('./mysqli_connect.php');
 
-       
         
         $query = "SELECT * FROM `users` WHERE  email_id ='$mail_id' AND password = '$password'";
    
@@ -144,6 +160,17 @@ if(isset($_POST['submit'])){
         }
         
     }
+
+
+}
+
+else{
+
+  echo "Verify if you are a human! ";
+   header("refresh:1; url=login.php");
+}
+   
+
     
     
 

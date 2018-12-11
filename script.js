@@ -104,18 +104,21 @@ $(document).on('click','.group_details', function(e){
     str+= "</div>"; 
     str+= "</div>";
     // image upload to posts
-    str+= "<i class='fas fa-camera' data-toggle='modal' data-target='#myModal2'></i>";
+    str+= "<i class='far fa-file dhide' data-toggle='modal' data-target='#myModal2'></i>";
     str+="<div class='modal' id='myModal2' >";
     str+= "<div class='modal-dialog'> ";
     str+= "<div class='modal-content'>";
     str+= "<div class='modal-header'>";
-    str+= "<h5 class='modal-title'>Upload Image</h5>";
+    str+= "<h5 class='modal-title'>Upload File</h5>";
     str+= "<button class='close' data-dismiss='modal'>&times;</button>";
     str+="</div>";
     str+= "<div class='modal-body'>";
     str+="<form class='form' action = 'upload.php' method='post' enctype='multipart/form-data'>";
     str+="<input type='file' class='btn btn-light' name='img' id='file' value='choose'/>";
+   
     str+= "</div>";
+    str+= "<img width='100' height='100' id='blah' class='blah' src='#' alt='your file' />";
+     str+="<a href='#' id='blah' class='blah' ></a><br>";
     str+= "<div class='modal-footer'>";
     str+= "<input type='submit' id="+ group_id+" style='margin-top:0px;'class='btn btn-primary upload_image' name='submit' value='Upload' />";
     str+="</form>";
@@ -200,22 +203,27 @@ $(document).on('click','.group_details', function(e){
     str+= "</div>"; 
     str+= "</div>";
     // image upload to posts
-    str+= "<i class='fas fa-camera' data-toggle='modal' data-target='#myModal2'></i>";
+    str+= "<i class='far fa-file dhide' data-toggle='modal' data-target='#myModal2'></i>";
     str+="<div class='modal' id='myModal2' >";
     str+= "<div class='modal-dialog'> ";
     str+= "<div class='modal-content'>";
     str+= "<div class='modal-header'>";
-    str+= "<h5 class='modal-title'>Upload Image</h5>";
+    str+= "<h5 class='modal-title'>Upload File</h5>";
     str+= "<button class='close' data-dismiss='modal'>&times;</button>";
     str+="</div>";
     str+= "<div class='modal-body'>";
     str+="<form class='form' action = 'upload.php' method='post' enctype='multipart/form-data'>";
     str+="<input type='file' class='btn btn-light' name='img' id='file' value='choose'/>";
+        
     str+= "</div>";
+   
+       str+= "<img width='100' height='100' id='blah' class='blah' src='#' alt='your file' />";
+     str+="<a href='#' id='blahs' class='blahs' ></a><br>";
     str+= "<div class='modal-footer'>";
     str+= "<input type='submit' id="+ group_id+" style='margin-top:0px;'class='btn btn-primary upload_image' name='submit' value='Upload' />";
     str+="</form>";
     str+= "<button class='btn btn-secondary' data-dismiss='modal'>close</button>"; 
+
     str+= "</div>"; 
     str+= "</div>";
     str+= "</div>"; 
@@ -263,7 +271,14 @@ $(document).on('click','.group_details', function(e){
       str+= "<div id='posts'>";
       str+= "<div id='dis"+e['post_id']+"' class='dis'>";
       str+= "<div>";
+      if(e['img_num'] != '1'){
       str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      }
+
+      else{
+
+        str+= "<img width='40' height='40' src ='"+$dp+"' alt= 'ddp'>";
+      }
       str+= "</div><br>";
       str+= "<div id= 'posts' style='float:left;' >";
       str+= "<H6><a href='allprofile.php?id="+e['user_id']+"'>"+ e['user_name']+"</a></H6>";
@@ -291,6 +306,12 @@ $(document).on('click','.group_details', function(e){
     {
       str+="<a href='"+e['link_content']+"'>"+e['link_content']+"</a><br>";
       str+= "<img width='100' height='100' src ='"+e['link_content']+"' alt= 'ddp'><br>";
+    }
+
+    else if(e['file_content']!='')
+    {
+      str+="<a href='upload/"+e['file_content']+"'>"+e['file_content']+"</a><br>";
+      
     }
 
       var post_id= e['post_id'];
@@ -442,7 +463,15 @@ $(document).on('click','.group_details', function(e){
                        }
 
                    str+="<div style='float:left; width:25%' >";
+                   if(e['img_num'] != '1'){
                    str+="<img width='20' height='20' src ='img/"+$dp+"' alt= 'dcdp'></img>";
+                    }
+
+                   else{
+
+                  str+= "<img width='20' height='20' src ='"+$dp+"' alt= 'dcdp'>";
+                      }
+                  
                    str+="</div>";
                    str+="<div id='readcomment'>";
                    str+="<p><font color='blue'>"+ e['user_name']+"</font> says:&nbsp;&nbsp;";
@@ -474,7 +503,7 @@ $(document).on('click','.group_details', function(e){
                   async:false,
                   url:'comment.php',
                   type: 'post',
-                  data:{ 'admin':0},
+                  data: {'admin':0},
                   dataType: 'text',
                   success: function(data){ 
                       console.log(data);
@@ -653,7 +682,14 @@ $(document).on('click','.submit_post', function(e){
     
       str+= "<div id='dis"+e['post_id']+"' class='dis'>";
       str+= "<div>";
+      if(e['img_num'] != '1'){
       str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      }
+
+      else{
+
+        str+= "<img width='40' height='40' src ='"+$dp+"' alt= 'ddp'>";
+      }
       str+= "</div><br>";
       str+= "<div id= 'posts' style='float:left;' >";
       str+= "<H6><a href='userprofile.php?'>"+ e['user_name']+"</a></H6>";

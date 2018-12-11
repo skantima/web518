@@ -22,11 +22,12 @@
     if(isset($_GET['id'])){
 
          $user_id = $_GET['id'];
-         $user="SELECT user_name,user_image,email_id FROM `users` WHERE user_id = '$user_id' ";
+         $user="SELECT user_name,user_image,email_id,img_num FROM `users` WHERE user_id = '$user_id' ";
        	 $r_user= mysqli_query($dbc,$user);
        	 $row_user=mysqli_fetch_array($r_user);
        	 $user_name = $row_user['user_name'];
        	 $mail=$row_user['email_id'];
+         $img_num=$row_user['img_num'];
        	   if($row_user['user_image']==""){
                 $dp="";
                 $dp=$dp."default.jpg";
@@ -47,7 +48,12 @@
        $profile=$profile."<a style='margin-top:50px;margin-left:50px;' href=home.php <i class='fas fa-chevron-left' ></i></a>";
        $profile=$profile."<H4 style='text-align:center; color:teal; margin-top:0px;'>User Profile</H4><br>";
        $profile=$profile."<div id='aligns'>";
-       $profile=$profile."<img width='100' height='100' src ='img/$dp'><br>";
+       if($img_num != 1){
+          $profile=$profile."<img width='100' height='100' src ='img/$dp'><br>";
+       }
+       else{
+        $profile=$profile."<img width='100' height='100' src ='$dp'><br>";
+       }
        $profile=$profile."<label>Username:</label>";
        $profile=$profile." $user_name<br><br>";
        $profile=$profile."<label>Email:</label>";
